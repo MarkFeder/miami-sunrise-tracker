@@ -1,0 +1,96 @@
+.day-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.day-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.day-card.selected {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+  border: 2px solid rgba(255, 217, 61, 0.5);
+}
+
+.day-card-today-badge {
+  display: inline-block;
+  background: #FF6B35;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  font-family: 'Crimson Text', serif;
+}
+
+.day-card-weekday {
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.day-card-date {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 16px;
+  font-family: 'Crimson Text', serif;
+}
+
+.day-card-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.day-card-sunrise {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFD93D;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.day-card-sunrise-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.day-card-score-badge {
+  background: var(--score-color);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.day-card-score-badge:hover {
+  transform: scale(1.1);
+}
+
+.day-card-condition {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.day-card-condition-text {
+  text-transform: capitalize;
+}
