@@ -9,11 +9,13 @@ export const getScoreColor = (score) => {
 };
 
 export const getConditionIcon = (condition) => {
+  const iconProps = { style: { width: '20px', height: '20px' } };
+
   switch (condition) {
-    case 'clear': return <Sun className="w-5 h-5" />;
-    case 'partly-cloudy': return <Cloud className="w-5 h-5" />;
-    case 'cloudy': return <Cloud className="w-5 h-5" />;
-    case 'rain': return <CloudRain className="w-5 h-5" />;
-    default: return <Sun className="w-5 h-5" />;
+    case 'clear': return <Sun {...iconProps} />;
+    case 'partly-cloudy': return <Cloud {...iconProps} />;
+    case 'cloudy': return <Cloud {...iconProps} />;
+    case 'rain': return <CloudRain {...iconProps} />;
+    default: return <Sun {...iconProps} />;
   }
 };
