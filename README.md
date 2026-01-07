@@ -2,6 +2,10 @@
 
 A beautiful, maintainable web application to track the best days to watch sunrise in Miami, Florida. Built with modern React patterns, separated concerns, and ready for internationalization.
 
+## Demo
+
+![Miami Sunrise Tracker Demo](assets/demo.gif)
+
 ## Features
 
 - 🌅 **14-day sunrise forecast** with accurate astronomical calculations
