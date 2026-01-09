@@ -23,7 +23,7 @@ export const APP_CONFIG = {
 
   // Forecast settings
   forecast: {
-    daysToShow: 14,
+    daysToShow: 30,
     defaultSelectedDay: 0, // 0 = today
   },
 

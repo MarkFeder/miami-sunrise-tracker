@@ -10,7 +10,7 @@ A beautiful, maintainable web application to track the best days to watch sunris
 
 ## Features
 
-- 🌅 **14-day sunrise forecast** with accurate astronomical calculations
+- 🌅 **30-day sunrise forecast** with accurate astronomical calculations
 - 🌤️ **Weather-based quality scoring** to identify the best viewing days
 - 📊 **Detailed weather information** including temperature, humidity, wind, and visibility
 - 🎨 **Beautiful coastal-themed design** with smooth animations
