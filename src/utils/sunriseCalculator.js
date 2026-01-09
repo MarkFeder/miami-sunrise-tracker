@@ -1,4 +1,4 @@
-import { MIAMI_LAT, MIAMI_LON } from '../constants/location';
+import { MIAMI_LAT, MIAMI_LON, APP_CONFIG } from '../constants';
 
 export const calculateSunrise = (date) => {
   const n = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
@@ -24,8 +24,8 @@ export const calculateSunrise = (date) => {
   const UT = T - lngHour;
   const localT = (UT + 24) % 24;
 
-  // EST offset (UTC-5)
-  const localTime = (localT - 5 + 24) % 24;
+  // Apply timezone offset from configuration
+  const localTime = (localT + APP_CONFIG.location.timezoneOffset + 24) % 24;
   const hours = Math.floor(localTime);
   const minutes = Math.floor((localTime - hours) * 60);
 

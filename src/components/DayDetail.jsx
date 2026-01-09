@@ -1,8 +1,8 @@
 import React from 'react';
 import { Sun, Cloud, Droplets, Wind, Eye } from 'lucide-react';
-import { formatTime } from '../utils/formatters';
+import { formatTime, formatWeekday, formatDate, formatCondition } from '../utils/formatters';
 import { getScoreColor, getConditionIcon } from '../utils/uiHelpers';
-import { STRINGS } from '../constants';
+import { STRINGS, APP_CONFIG } from '../constants';
 import './DayDetail.css';
 
 export const DayDetail = ({ selectedDay }) => {
@@ -15,10 +15,10 @@ export const DayDetail = ({ selectedDay }) => {
           <div className="day-detail-day-label">
             {selectedDay.isToday
               ? STRINGS.date.today
-              : selectedDay.date.toLocaleDateString('en-US', { weekday: STRINGS.date.weekdayFormat })}
+              : formatWeekday(selectedDay.date, APP_CONFIG.locale.dateLocale, STRINGS.date.weekdayFormat)}
           </div>
           <div className="day-detail-date">
-            {selectedDay.date.toLocaleDateString('en-US', STRINGS.date.dateFormat)}
+            {formatDate(selectedDay.date, APP_CONFIG.locale.dateLocale, STRINGS.date.dateFormat)}
           </div>
           <div className="day-detail-sunrise-time">
             <Sun className="day-detail-sunrise-icon" aria-label={STRINGS.a11y.sunIcon} />
@@ -44,7 +44,7 @@ export const DayDetail = ({ selectedDay }) => {
           <div>
             <div className="day-detail-stat-label">{STRINGS.weather.conditions}</div>
             <div className="day-detail-stat-value capitalize">
-              {selectedDay.weather.condition.replace('-', ' ')}
+              {formatCondition(selectedDay.weather.condition)}
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { calculateSunrise } from '../utils/sunriseCalculator';
 import { generateWeatherData } from '../services/weatherService';
+import { APP_CONFIG } from '../constants';
 
 export const useSunriseData = () => {
   const [sunriseDays, setSunriseDays] = useState([]);
@@ -12,7 +13,7 @@ export const useSunriseData = () => {
     const days = [];
     const today = new Date();
 
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < APP_CONFIG.forecast.daysToShow; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
 

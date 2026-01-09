@@ -1,8 +1,8 @@
 import React from 'react';
 import { Sun } from 'lucide-react';
-import { formatTime } from '../utils/formatters';
+import { formatTime, formatWeekday, formatDate, formatCondition } from '../utils/formatters';
 import { getScoreColor, getConditionIcon } from '../utils/uiHelpers';
-import { STRINGS } from '../constants';
+import { STRINGS, APP_CONFIG } from '../constants';
 import './DayCard.css';
 
 export const DayCard = ({ day, index, isSelected, onClick }) => {
@@ -21,11 +21,11 @@ export const DayCard = ({ day, index, isSelected, onClick }) => {
       )}
 
       <div className="day-card-weekday">
-        {day.date.toLocaleDateString('en-US', { weekday: STRINGS.date.weekdayFormat })}
+        {formatWeekday(day.date, APP_CONFIG.locale.dateLocale, STRINGS.date.weekdayFormat)}
       </div>
 
       <div className="day-card-date">
-        {day.date.toLocaleDateString('en-US', STRINGS.date.dateFormat)}
+        {formatDate(day.date, APP_CONFIG.locale.dateLocale, STRINGS.date.dateFormat)}
       </div>
 
       <div className="day-card-info-row">
@@ -44,7 +44,7 @@ export const DayCard = ({ day, index, isSelected, onClick }) => {
       <div className="day-card-condition">
         {getConditionIcon(day.weather.condition)}
         <span className="day-card-condition-text">
-          {day.weather.condition.replace('-', ' ')}
+          {formatCondition(day.weather.condition)}
         </span>
       </div>
     </div>

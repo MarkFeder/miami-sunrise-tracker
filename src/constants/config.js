@@ -12,7 +12,13 @@ export const APP_CONFIG = {
     latitude: MIAMI_LAT,
     longitude: MIAMI_LON,
     timezone: 'America/New_York',
+    timezoneOffset: -5, // EST offset (UTC-5), used in sunrise calculations
     waterBodyName: 'Biscayne Bay',
+  },
+
+  // Locale and formatting
+  locale: {
+    dateLocale: 'en-US', // Used for date formatting throughout the app
   },
 
   // Forecast settings

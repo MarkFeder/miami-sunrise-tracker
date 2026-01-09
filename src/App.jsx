@@ -37,7 +37,7 @@ const MiamiSunriseTracker = () => {
           <div className="app-forecast-grid">
             {sunriseDays.map((day, index) => (
               <DayCard
-                key={index}
+                key={day.date.toISOString()}
                 day={day}
                 index={index}
                 isSelected={selectedDay?.date.getTime() === day.date.getTime()}
