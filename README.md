@@ -2,7 +2,9 @@
 
 A beautiful, maintainable web application to track the best days to watch sunrise in Miami, Florida. Built with modern React patterns, separated concerns, and ready for internationalization.
 
-## Demo
+## 🌐 Live Demo
+
+**[View Live App →](https://miami-sunrise-tracker.vercel.app)**
 
 ![Miami Sunrise Tracker Demo](assets/demo.gif)
 
