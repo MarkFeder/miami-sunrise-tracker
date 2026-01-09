@@ -20,8 +20,8 @@ export const STRINGS = {
 
   // Forecast section
   forecast: {
-    title: '14-Day Forecast',
-    dayCount: 14,
+    title: '30-Day Forecast',
+    dayCount: 30,
   },
 
   // Score and quality

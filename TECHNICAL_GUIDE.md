@@ -17,7 +17,7 @@
 
 ### What is This Project?
 
-Miami Sunrise Tracker is a React web application that helps users find the best days to watch the sunrise in Miami, Florida. It calculates sunrise times for the next 14 days and scores each day based on weather conditions.
+Miami Sunrise Tracker is a React web application that helps users find the best days to watch the sunrise in Miami, Florida. It calculates sunrise times for the next 30 days and scores each day based on weather conditions.
 
 ### Technologies Used
 
@@ -565,8 +565,8 @@ export const useSunriseData = () => {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      // Generate 14 days of data
-      for (let i = 0; i < 14; i++) {
+      // Generate 30 days of data
+      for (let i = 0; i < 30; i++) {
         const date = new Date(today);
         date.setDate(today.getDate() + i);
 
@@ -895,8 +895,8 @@ export const STRINGS = {
   },
 
   forecast: {
-    title: '14-Day Forecast',
-    dayCount: 14,
+    title: '30-Day Forecast',
+    dayCount: 30,
   },
 
   weather: {
