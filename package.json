@@ -2,7 +2,6 @@
   "name": "miami-sunrise-tracker",
   "version": "1.0.0",
   "description": "Track the best days to watch sunrise in Miami",
-  "homepage": "https://MarkFeder.github.io/miami-sunrise-tracker",
   "private": true,
   "dependencies": {
     "lucide-react": "^0.263.1",
