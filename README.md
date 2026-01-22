@@ -48,9 +48,10 @@ The app will open in your browser at `http://localhost:3000`
 ## Available Scripts
 
 - `npm start` - Runs the app in development mode
-- `npm build` - Builds the app for production
-- `npm test` - Runs the test suite
-- `npm eject` - Ejects from Create React App (one-way operation)
+- `npm run build` - Builds the app for production
+- `npm test` - Runs the test suite in watch mode
+- `npm run test:ci` - Runs tests with coverage (used in CI)
+- `npm run eject` - Ejects from Create React App (one-way operation)
 
 ## How It Works
 
@@ -71,9 +72,11 @@ Higher scores indicate better sunrise viewing conditions.
 
 ## Technologies Used
 
-- **React 18** - UI framework
+- **React 18** - UI framework with hooks (useState, useEffect, useCallback, memo)
 - **Lucide React** - Icon library
 - **Create React App** - Build tooling
+- **Jest + React Testing Library** - Unit and component testing
+- **GitHub Actions** - CI/CD pipeline
 - **CSS Modules approach** - Component-specific stylesheets
 - **Centralized constants** - String localization and configuration management
 
@@ -81,15 +84,20 @@ Higher scores indicate better sunrise viewing conditions.
 
 ```
 miami-sunrise-tracker/
+├── .github/
+│   └── workflows/
+│       └── ci.yml           # GitHub Actions CI pipeline
 ├── public/
 │   └── index.html
 ├── src/
 │   ├── components/           # React components with co-located CSS
 │   │   ├── App.css          # Main app styles
-│   │   ├── DayCard.jsx      # Individual day forecast card
+│   │   ├── DayCard.jsx      # Individual day forecast card (memoized)
 │   │   ├── DayCard.css      # DayCard styles
 │   │   ├── DayDetail.jsx    # Detailed day view
 │   │   ├── DayDetail.css    # DayDetail styles
+│   │   ├── ErrorBoundary.jsx # Error boundary for graceful error handling
+│   │   ├── ErrorBoundary.css # ErrorBoundary styles
 │   │   ├── Header.jsx       # App header
 │   │   ├── Header.css       # Header styles
 │   │   ├── Footer.jsx       # App footer
@@ -100,16 +108,19 @@ miami-sunrise-tracker/
 │   │   ├── config.js        # App configuration
 │   │   └── location.js      # Location coordinates
 │   ├── hooks/               # Custom React hooks
-│   │   └── useSunriseData.js # Data fetching and state management
+│   │   └── useSunriseData.js # Data fetching with error handling and refetch
 │   ├── services/            # External service integrations
 │   │   └── weatherService.js # Weather data service
 │   ├── utils/               # Utility functions
 │   │   ├── formatters.js    # Data formatting utilities
+│   │   ├── formatters.test.js # Formatter unit tests
 │   │   ├── sunriseCalculator.js # Astronomical calculations
+│   │   ├── sunriseCalculator.test.js # Calculator unit tests
 │   │   └── uiHelpers.js     # UI-related helper functions
 │   ├── App.jsx              # Main application component
 │   ├── index.js             # Entry point
-│   └── index.css            # Global base styles
+│   ├── index.css            # Global base styles
+│   └── setupTests.js        # Test configuration
 ├── LOCALIZATION.md          # Localization and i18n guide
 ├── WEBSTORM_SETUP.md        # WebStorm IDE setup guide
 ├── package.json
@@ -145,6 +156,39 @@ App settings are centralized in `src/constants/config.js`:
 - API endpoints and keys
 - Feature flags
 - Theme colors
+
+### Error Handling
+The app implements comprehensive error handling:
+- **ErrorBoundary component** - Catches render errors and displays a recovery UI
+- **Hook-level error state** - `useSunriseData` tracks errors and provides a `refetch` function
+- **User-friendly messages** - Centralized error strings with retry capabilities
+
+### Performance Optimizations
+- **React.memo** - `DayCard` is memoized to prevent unnecessary re-renders in the 30-item list
+- **useCallback** - Click handlers are stabilized to maintain referential equality
+- **Efficient list rendering** - CSS Grid with stable keys for optimal reconciliation
+
+## Testing
+
+### Running Tests
+```bash
+# Watch mode (development)
+npm test
+
+# Single run with coverage (CI)
+npm run test:ci
+```
+
+### Test Coverage
+- **Unit tests** for utility functions (`formatters.js`, `sunriseCalculator.js`)
+- **27 test cases** covering edge cases, seasonal variations, and formatting
+
+### CI/CD Pipeline
+GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every push and PR:
+- Linting
+- Test suite with coverage
+- Production build verification
+- Tests against Node.js 18.x and 20.x
 
 ### Customization
 
