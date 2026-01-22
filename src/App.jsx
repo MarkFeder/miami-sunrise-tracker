@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Calendar } from 'lucide-react';
 import { useSunriseData } from './hooks/useSunriseData';
 import { Header } from './components/Header';
 import { DayDetail } from './components/DayDetail';
 import { DayCard } from './components/DayCard';
 import { Footer } from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 import { STRINGS } from './constants';
 import './components/App.css';
 
 const MiamiSunriseTracker = () => {
-  const { sunriseDays, selectedDay, setSelectedDay, loading } = useSunriseData();
+  const { sunriseDays, selectedDay, setSelectedDay, loading, error, refetch } = useSunriseData();
+
+  const handleDaySelect = useCallback((day) => {
+    setSelectedDay(day);
+  }, [setSelectedDay]);
 
   if (loading) {
     return (
       <div className="app-loading">
         <div className="app-loading-text">{STRINGS.app.loading}</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="app-error">
+        <div className="app-error-content">
+          <h2 className="app-error-title">{STRINGS.error.title}</h2>
+          <p className="app-error-message">{STRINGS.error.message}</p>
+          <button className="app-error-button" onClick={refetch}>
+            {STRINGS.error.retry}
+          </button>
+        </div>
       </div>
     );
   }
@@ -41,7 +60,7 @@ const MiamiSunriseTracker = () => {
                 day={day}
                 index={index}
                 isSelected={selectedDay?.date.getTime() === day.date.getTime()}
-                onClick={() => setSelectedDay(day)}
+                onClick={handleDaySelect}
               />
             ))}
           </div>
@@ -53,4 +72,10 @@ const MiamiSunriseTracker = () => {
   );
 };
 
-export default MiamiSunriseTracker;
+const App = () => (
+  <ErrorBoundary>
+    <MiamiSunriseTracker />
+  </ErrorBoundary>
+);
+
+export default App;

@@ -59,6 +59,15 @@ export const STRINGS = {
     calendarIcon: 'Calendar icon',
     selectDay: 'Select this day to view details',
   },
+
+  // Error messages
+  error: {
+    title: 'Something went wrong',
+    message: 'We couldn\'t load the sunrise data. Please try again.',
+    retry: 'Try Again',
+    boundaryTitle: 'Oops! Something went wrong',
+    boundaryMessage: 'An unexpected error occurred. Please refresh the page or try again.',
+  },
 };
 
 export default STRINGS;

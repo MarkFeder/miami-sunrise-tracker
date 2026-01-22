@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { Sun } from 'lucide-react';
 import { formatTime, formatWeekday, formatDate, formatCondition } from '../utils/formatters';
 import { getScoreColor, getConditionIcon } from '../utils/uiHelpers';
 import { STRINGS, APP_CONFIG } from '../constants';
 import './DayCard.css';
 
-export const DayCard = ({ day, index, isSelected, onClick }) => {
+export const DayCard = memo(({ day, index, isSelected, onClick }) => {
+  const handleClick = useCallback(() => {
+    onClick(day);
+  }, [onClick, day]);
+
   return (
     <div
       className={`day-card ${isSelected ? 'selected' : ''}`}
-      onClick={onClick}
+      onClick={handleClick}
       aria-label={STRINGS.a11y.selectDay}
       style={{
         animation: `slideIn 0.6s ease-out ${index * 0.05}s backwards`
@@ -49,4 +53,4 @@ export const DayCard = ({ day, index, isSelected, onClick }) => {
       </div>
     </div>
   );
-};
+});
